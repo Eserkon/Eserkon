@@ -1,0 +1,279 @@
+ <!DOCTYPE html>
+<html lang="tr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>ESERKON | Dijital Kartvizit</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@500;600;700&display=swap" rel="stylesheet">
+  <style>
+    body {
+      font-family: 'Poppins', sans-serif;
+      margin: 0;
+      padding: 0;
+      background: #0d1b2a;
+      color: white;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .hero {
+      text-align: center;
+      padding: 60px 20px;
+      min-height: 70vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      background: linear-gradient(135deg, #0d1b2a 0%, #1b263b 100%);
+    }
+
+    .hero img.big-logo {
+      max-width: 240px;
+      margin-bottom: 30px;
+    }
+
+    .hero img.inline-logo {
+      background: transparent !important;
+      background-color: transparent !important;
+      border: none !important;
+      box-shadow: none !important;
+      outline: none !important;
+      width: 1.15em;
+      height: 1.15em;
+      vertical-align: middle;
+      margin: 0 0.06em;
+      border-radius: 50%;
+      box-shadow: 0 0 15px rgba(0, 198, 255, 0.7);
+      object-fit: contain;
+    }
+
+    .hero-text h1 {
+      font-size: 5.5rem;
+      margin: 10px 0;
+      font-weight: 700;
+      animation: eskon-heartbeat 1.6s ease-in-out infinite alternate;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.05em;
+    }
+
+    .hero-text p {
+      font-size: 1.9rem;
+      letter-spacing: 3px;
+      margin: 20px 0 60px;
+      font-weight: 600;
+      animation: slogan-pulse 3s ease-in-out infinite;
+    }
+
+    @keyframes eskon-heartbeat {
+      from {
+        transform: scale(1);
+        text-shadow: 0 0 15px #00ffff, 0 0 30px #00ffff, 0 0 50px #00c6ff, 0 0 80px #0095ff;
+      }
+      to {
+        transform: scale(1.18);
+        text-shadow: 0 0 25px #00ffff, 0 0 50px #00ffff, 0 0 80px #00c6ff, 0 0 140px #0095ff;
+      }
+    }
+
+    @keyframes slogan-pulse {
+      0%, 100% { transform: scale(1); text-shadow: 0 0 12px rgba(255,255,255,0.6); }
+      50% { transform: scale(1.14); text-shadow: 0 0 20px #00ff9d, 0 0 35px #ffdd00, 0 0 55px #ff6b6b, 0 0 70px #c084fc; }
+    }
+
+    .eskon-white { color: white; }
+    .eskon-blue { color: #00eaff; }
+    .green      { color: #00ff9d; }
+    .orange     { color: #ffaa00; }
+    .purple     { color: #c084fc; }
+    .darkred    { color: #e63946; }
+
+    .qr-container {
+      position: relative;
+      margin: -40px auto 80px;
+      text-align: center;
+    }
+
+    .qr-overlay {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      font-size: 1.1rem;
+      text-align: center;
+      color: white;
+      text-shadow: 0 0 10px rgba(0,0,0,0.8);
+      z-index: 3;
+      pointer-events: none;
+    }
+
+    .qr-overlay .line1 {
+      font-weight: bold;
+      font-size: 1.3rem;
+      animation: slideDown 1s ease forwards;
+      opacity: 0;
+    }
+
+    .qr-overlay .line2 {
+      font-size: 0.95rem;
+      color: #00b4d8;
+      animation: fadeIn 1.5s ease forwards;
+      opacity: 0;
+      animation-delay: 0.5s;
+    }
+
+    @keyframes slideDown {
+      from { transform: translateY(-20px); opacity: 0; }
+      to { transform: translateY(0); opacity: 1; }
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; }
+      to { opacity: 1; }
+    }
+
+    .qr-image {
+      width: 260px;
+      border-radius: 16px;
+      padding: 10px;
+      background: white;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.4);
+    }
+
+    .neon-eserkon {
+      margin-top: 30px;
+      font-size: 2.4rem;
+      font-weight: bold;
+      letter-spacing: 0.1em;
+      color: #1e2a78;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 0.15em;
+      text-shadow:
+        0 0 5px #1e2a78,
+        0 0 10px #1e2a78,
+        0 0 20px #1e2a78;
+      animation: neonGlow 2s infinite;
+    }
+
+    .neon-logo {
+      width: 36px;
+      height: 36px;
+      border-radius: 50%;
+      padding: 3px;
+      background: white;
+      box-shadow: 0 0 10px #1e2a78;
+    }
+
+    @keyframes neonGlow {
+      0% { opacity: 1; }
+      50% { opacity: 0.8; transform: scale(1.05); }
+      100% { opacity: 1; transform: scale(1); }
+    }
+
+    .home-btn {
+      position: fixed;
+      bottom: 20px;
+      right: 20px;
+      background: linear-gradient(135deg, #00b4d8, #0077b6);
+      color: white;
+      padding: 12px 18px;
+      border-radius: 30px;
+      text-decoration: none;
+      font-weight: 600;
+      font-size: 14px;
+      box-shadow: 0 6px 18px rgba(0,0,0,0.4);
+      z-index: 9999;
+    }
+
+    .home-btn:hover {
+      transform: scale(1.08);
+    }
+
+    /* Popup'lar tamamen temizlendi, içerik yok */
+    .popup { display: none; position: fixed; inset: 0; background: rgba(13,27,42,0.9); z-index: 1000; align-items: center; justify-content: center; }
+    .popup.active { display: flex; }
+    .popup-content { background: #1b263b; padding: 40px; border-radius: 16px; max-width: 500px; width: 100%; box-shadow: 0 20px 50px rgba(0,0,0,0.6); }
+    .close-btn { position: absolute; top: 12px; right: 20px; font-size: 2.2rem; cursor: pointer; color: #aaa; }
+    .close-btn:hover { color: white; }
+  </style>
+</head>
+<body>
+
+  <!-- HERO -->
+  <div class="hero">
+    <img src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEgEuqMyi9iTUz8Mtp8GN85InHVgANQHOXEAQhjhZHJsilqa9FrWXikcX1pAa7Xi2nQfFDblyewwpkRGiWTxlKOmXWJluZwqaPy5yRodC2AXEuvp5XwV5qLDbhAFJifc7ntFnD8WJ-IkFTfPFrWkZzPV7yiYVyL-HIsr-NVnKpnocHvknEixxC0UhSkMw5BX/s320/TRANSPARAN%20LOGO.png"
+         alt="ESERKON Logo" class="big-logo">
+
+    <div class="hero-text">
+      <h1>
+        <span class="eserkon-white">E S E R K</span>
+        <img src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEgEuqMyi9iTUz8Mtp8GN85InHVgANQHOXEAQhjhZHJsilqa9FrWXikcX1pAa7Xi2nQfFDblyewwpkRGiWTxlKOmXWJluZwqaPy5yRodC2AXEuvp5XwV5qLDbhAFJifc7ntFnD8WJ-IkFTfPFrWkZzPV7yiYVyL-HIsr-NVnKpnocHvknEixxC0UhSkMw5BX/s320/TRANSPARAN%20LOGO.png"
+             alt="ESERKON" class="inline-logo">
+        <span class="eskon-white">N</span>
+      </h1>
+      <p>
+        <span class="green">EĞİTİM</span>
+        <span class="orange">SOSYAL ETKİNLİK</span>
+        <span class="darkred">VE</span>
+        <span class="white">REHBERLİK</span>
+        <span class="purple">KONSEYİ</span>
+      </p>
+    </div>
+  </div>
+
+  <!-- QR KODU -->
+  <div class="qr-container">
+    <!-- QR ÜZERİNE YAZI -->
+    <div class="qr-overlay">
+      <div class="line1">📲 QR Kodu Tarat</div>
+      <div class="line2">💼 Dijital Kartvizite Anında Ulaş</div>
+    </div>
+
+    <!-- QR RESMİ -->
+    <img class="qr-image"
+         src="https://api.qrserver.com/v1/create-qr-code/?size=400x400&data=https%3A%2F%2Feskon-baskan-kartvizit.blogspot.com%2F" />
+
+    <!-- QR ALTINDA NEON E S E R K [LOGO] N -->
+    <div class="neon-eserkon">
+      E S E R K
+      <img class="neon-logo"
+           src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEgEuqMyi9iTUz8Mtp8GN85InHVgANQHOXEAQhjhZHJsilqa9FrWXikcX1pAa7Xi2nQfFDblyewwpkRGiWTxlKOmXWJluZwqaPy5yRodC2AXEuvp5XwV5qLDbhAFJifc7ntFnD8WJ-IkFTfPFrWkZzPV7yiYVyL-HIsr-NVnKpnocHvknEixxC0UhSkMw5BX/s320/TRANSPARAN%20LOGO.png" />
+      N
+    </div>
+  </div>
+
+  <!-- ANA SAYFAYA DÖN BUTONU -->
+  <a href="anasayfa.html" class="home-btn">📋 Diğer Hizmetler</a>
+
+  <!-- Popup'lar (boş, sadece yapı var) -->
+  <div id="gonulluForm" class="popup"><div class="popup-content"><span class="close-btn">×</span></div></div>
+  <div id="ogrenciForm" class="popup"><div class="popup-content"><span class="close-btn">×</span></div></div>
+  <div id="uyeForm" class="popup"><div class="popup-content"><span class="close-btn">×</span></div></div>
+  <div id="destekForm" class="popup"><div class="popup-content"><span class="close-btn">×</span></div></div>
+
+  <script>
+    document.querySelectorAll('.fancy-btn').forEach(btn => {
+      btn.addEventListener('click', () => {
+        const target = btn.getAttribute('data-target');
+        const popup = document.getElementById(target);
+        if (popup) popup.classList.add('active');
+      });
+    });
+
+    document.querySelectorAll('.close-btn, .popup').forEach(el => {
+      el.addEventListener('click', e => {
+        if (e.target.classList.contains('close-btn') || e.target.classList.contains('popup')) {
+          document.querySelectorAll('.popup').forEach(p => p.classList.remove('active'));
+        }
+      });
+    });
+  </script>
+
+</body>
+</html>
