@@ -4,20 +4,11 @@
   <p style="text-align:center; color:#555;">Aşağıdan ilgini çeken alanı seçerek başvuru yapabilirsiniz.</p>
 
   <!-- ✅ BAŞARI MESAJI -->
-  <div id="successMessage" style="
-  display:none;
-  background:#00c853;
-  color:white;
-  padding:12px;
-  border-radius:8px;
-  text-align:center;
-  margin-bottom:15px;
-  font-weight:600;
-  animation:fadeIn 0.5s;">
-  ✅ Mesajınız başarıyla iletilmiştir.
+  <div id="successMessage" style="display:none; background:#00c853; color:white; padding:12px; border-radius:8px; text-align:center; margin-bottom:15px; font-weight:600;">
+    ✅ Mesajınız başarıyla iletilmiştir.
   </div>
 
-  <!-- Sekme Menüsü -->
+  <!-- Sekmeler -->
   <div style="display:flex; justify-content:center; margin-bottom:20px; gap:10px; flex-wrap:wrap;">
     <button onclick="openTab('ogretmen')" class="tab-btn active">Gönüllü Öğretmen</button>
     <button onclick="openTab('ogrenci')" class="tab-btn">Öğrenci Üye</button>
@@ -25,44 +16,58 @@
     <button onclick="openTab('destek')" class="tab-btn">Destek Ol</button>
   </div>
 
-  <!-- FORM 1 -->
+  <!-- ÖĞRETMEN -->
   <div id="ogretmen" class="tab-content" style="display:block; padding:20px; background:white; border-radius:10px;">
-    <h2 style="color:#006d77; text-align:center;">Gönüllü Öğretmen Başvuru</h2>
     <form action="https://formspree.io/f/mgvglwbz" method="POST" onsubmit="showMessage(event)">
       <input type="text" name="adsoyad" placeholder="Ad Soyad" required style="width:100%; padding:10px; margin:8px 0;">
       <input type="tel" name="telefon" placeholder="Telefon" required style="width:100%; padding:10px; margin:8px 0;">
       <input type="email" name="email" placeholder="E-posta" required style="width:100%; padding:10px; margin:8px 0;">
       <input type="text" name="sehir" placeholder="Şehir / İl" required style="width:100%; padding:10px; margin:8px 0;">
+      
+      <select name="brans" required style="width:100%; padding:10px; margin:8px 0;">
+        <option value="">Branş Seçiniz</option>
+        <option>Matematik</option>
+        <option>Türkçe</option>
+        <option>İngilizce</option>
+        <option>Fen Bilimleri</option>
+        <option>Sosyal Bilgiler</option>
+        <option>Din Kültürü</option>
+        <option>Diğer</option>
+      </select>
+
+      <select name="seviye" required style="width:100%; padding:10px; margin:8px 0;">
+        <option value="">Ders Seviyesi</option>
+        <option>İlkokul</option>
+        <option>Ortaokul</option>
+        <option>Lise</option>
+        <option>Üniversite Hazırlık</option>
+      </select>
+
+      <textarea name="mesaj" placeholder="Kendiniz hakkında bilgi" required style="width:100%; padding:10px; margin:8px 0;"></textarea>
+
       <button type="submit" style="background:#006d77; color:white; padding:12px; width:100%;">Gönder</button>
     </form>
   </div>
 
-  <!-- FORM 2 -->
+  <!-- ÖĞRENCİ -->
   <div id="ogrenci" class="tab-content" style="display:none; padding:20px; background:white; border-radius:10px;">
-    <h2 style="color:#006d77; text-align:center;">Öğrenci Üye Ol</h2>
     <form action="https://formspree.io/f/mgvglwbz" method="POST" onsubmit="showMessage(event)">
       <input type="text" name="adsoyad" placeholder="Ad Soyad" required style="width:100%; padding:10px; margin:8px 0;">
+      <input type="tel" name="telefon" placeholder="Telefon" required style="width:100%; padding:10px; margin:8px 0;">
       <input type="email" name="email" placeholder="E-posta" required style="width:100%; padding:10px; margin:8px 0;">
-      <button type="submit" style="background:#006d77; color:white; padding:12px; width:100%;">Gönder</button>
-    </form>
-  </div>
+      <input type="text" name="okul" placeholder="Okulunuz" required style="width:100%; padding:10px; margin:8px 0;">
+      <input type="text" name="bolum" placeholder="Bölümünüz" required style="width:100%; padding:10px; margin:8px 0;">
+      
+      <select name="talep" required style="width:100%; padding:10px; margin:8px 0;">
+        <option value="">Talebiniz</option>
+        <option>Etüt</option>
+        <option>Sosyal Etkinlikler</option>
+        <option>Barınma</option>
+        <option>Ulaşım</option>
+        <option>Yemek</option>
+        <option>Burs</option>
+      </select>
 
-  <!-- FORM 3 -->
-  <div id="gonullu" class="tab-content" style="display:none; padding:20px; background:white; border-radius:10px;">
-    <h2 style="color:#006d77; text-align:center;">Gönüllü Üye Ol</h2>
-    <form action="https://formspree.io/f/mgvglwbz" method="POST" onsubmit="showMessage(event)">
-      <input type="text" name="adsoyad" placeholder="Ad Soyad" required style="width:100%; padding:10px; margin:8px 0;">
-      <input type="email" name="email" placeholder="E-posta" required style="width:100%; padding:10px; margin:8px 0;">
-      <button type="submit" style="background:#006d77; color:white; padding:12px; width:100%;">Üye Ol</button>
-    </form>
-  </div>
-
-  <!-- FORM 4 -->
-  <div id="destek" class="tab-content" style="display:none; padding:20px; background:white; border-radius:10px;">
-    <h2 style="color:#006d77; text-align:center;">Destek Ol</h2>
-    <form action="https://formspree.io/f/mgvglwbz" method="POST" onsubmit="showMessage(event)">
-      <input type="text" name="adsoyad" placeholder="Ad Soyad" required style="width:100%; padding:10px; margin:8px 0;">
-      <input type="email" name="email" placeholder="E-posta" required style="width:100%; padding:10px; margin:8px 0;">
       <button type="submit" style="background:#006d77; color:white; padding:12px; width:100%;">Gönder</button>
     </form>
   </div>
@@ -75,12 +80,6 @@
         tabs[i].style.display = "none";
       }
       document.getElementById(tabName).style.display = "block";
-
-      const buttons = document.getElementsByClassName("tab-btn");
-      for (let i = 0; i < buttons.length; i++) {
-        buttons[i].classList.remove("active");
-      }
-      event.currentTarget.classList.add("active");
     }
 
     function showMessage(e){
@@ -91,8 +90,8 @@
         method: "POST",
         body: new FormData(form),
         headers: { 'Accept': 'application/json' }
-      }).then(response => {
-        if(response.ok){
+      }).then(res => {
+        if(res.ok){
           document.getElementById("successMessage").style.display = "block";
           form.reset();
         }
@@ -100,36 +99,8 @@
     }
   </script>
 
-  <style>
-    .tab-btn {
-      padding:10px 16px;
-      background:#e0e0e0;
-      border:none;
-      border-radius:6px;
-      cursor:pointer;
-    }
-    .tab-btn.active { background:#006d77; color:white; }
-
-    @keyframes fadeIn {
-      from {opacity:0; transform:translateY(-10px);}
-      to {opacity:1;}
-    }
-  </style>
-
 </div>
 
-<!-- ✅ ANA SAYFA BUTONU -->
-<a href="./anasayfa.html" style="
-position:fixed;
-bottom:20px;
-right:20px;
-background:#006d77;
-color:white;
-padding:12px 18px;
-border-radius:30px;
-text-decoration:none;
-font-weight:600;
-box-shadow:0 6px 15px rgba(0,0,0,0.3);
-z-index:9999;">
+<a href="./index.html" style="position:fixed; bottom:20px; right:20px; background:#006d77; color:white; padding:12px 18px; border-radius:30px; text-decoration:none;">
 🏠 Ana Sayfaya Dön
 </a>
