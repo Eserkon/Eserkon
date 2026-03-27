@@ -1,283 +1,255 @@
- <!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="tr">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Bize Katıl - Eserkon</title>
-  <style>
-    .tab-content { display: none; }
-    .tab-btn {
-      padding: 12px 20px;
-      border: none;
-      border-radius: 8px;
-      font-size: 16px;
-      cursor: pointer;
-      transition: all 0.3s;
-    }
-    .tab-btn:hover {
-      transform: translateY(-2px);
-      box-shadow: 0 4px 12px rgba(0,0,0,0.15);
-    }
-    .payment-section {
-      background: #f8f9fa;
-      padding: 18px;
-      border-radius: 8px;
-      border: 1px solid #ddd;
-      margin: 15px 0;
-    }
-    .warning {
-      background: #fff3cd;
-      color: #856404;
-      padding: 12px;
-      border-radius: 6px;
-      font-size: 14px;
-      border: 1px solid #ffeaa7;
-    }
-  </style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Bize Katıl - ESERKON</title>
+
+<style>
+body {font-family:Arial; background:#f0f8ff;}
+.container {max-width:850px;margin:auto;padding:20px;background:white;border-radius:12px;}
+
+.tab-content{display:none;}
+.tab-btn{
+padding:10px 15px;border:none;border-radius:8px;color:white;cursor:pointer;
+}
+
+input,select,textarea{
+width:100%;padding:10px;margin:8px 0;border:1px solid #ccc;border-radius:4px;
+}
+
+button{
+padding:12px;border:none;border-radius:8px;color:white;font-weight:bold;
+}
+
+.payment-section{
+background:#f8f9fa;padding:15px;border-radius:8px;margin-top:10px;
+}
+</style>
 </head>
+
 <body>
-<div style="font-family:Arial, sans-serif; max-width:850px; margin:0 auto; padding:20px; background:#f0f8ff; border-radius:12px; box-shadow:0 0 15px rgba(0,0,0,0.1);">
-  
-  <h1 style="text-align:center; color:#006d77;">Bize Katıl</h1>
-  <p style="text-align:center; color:#555;">Aşağıdan başvuru türünü seçiniz.</p>
 
-  <div id="successMessage" style="display:none; background:#00c853; color:white; padding:12px; border-radius:8px; text-align:center; margin-bottom:15px;">
-    ✅ Mesajınız Tarafımıza Başarıyla iletilmiştir.
-  </div>
+<div class="container">
 
-  <!-- BUTONLAR -->
-  <div style="display:flex; justify-content:center; gap:10px; flex-wrap:wrap; margin-bottom:20px;">
-    <button onclick="openTab('ogretmen')" class="tab-btn" style="background:#00b4d8;color:white;">👨‍🏫 Gönüllü Öğretmen</button>
-    <button onclick="openTab('ogrenci')" class="tab-btn" style="background:#2ecc71;color:white;">🎓 Öğrenci</button>
-    <button onclick="openTab('gonullu')" class="tab-btn" style="background:#9b59b6;color:white;">🤝 Üye Ol</button>
-    <button onclick="openTab('destek')" class="tab-btn" style="background:#e67e22;color:white;">💖 Destek Ol</button>
-  </div>
+<h1 style="text-align:center;color:#006d77;">Bize Katıl</h1>
 
-  <!-- ====================== ÖĞRETMEN ====================== -->
-  <div id="ogretmen" class="tab-content" style="display:block; padding:20px; background:white; border-radius:10px;">
-    <form action="https://formspree.io/f/xpqowknj" method="POST" onsubmit="sendForm(event)">
-      <h2 style="color:#006d77; text-align:center; margin-bottom:20px;">Gönüllü Öğretmen Başvurusu</h2>
-      <input type="text" name="adsoyad" placeholder="Ad Soyad *" required style="width:100%;padding:10px;margin:8px 0;border:1px solid #ccc;border-radius:4px;">
-      <input type="tel" name="telefon" placeholder="Telefon Numarası *" required style="width:100%;padding:10px;margin:8px 0;border:1px solid #ccc;border-radius:4px;">
-      <input type="email" name="email" placeholder="E-posta Adresi *" required style="width:100%;padding:10px;margin:8px 0;border:1px solid #ccc;border-radius:4px;">
-      <input type="text" name="sehir" placeholder="Şehir *" required style="width:100%;padding:10px;margin:8px 0;border:1px solid #ccc;border-radius:4px;">
-      
-      <select name="brans" required style="width:100%;padding:10px;margin:8px 0;border:1px solid #ccc;border-radius:4px;">
-        <option value="">Branş Seçiniz *</option>
-        <option>Matematik</option><option>Türkçe</option><option>İngilizce</option><option>Fen Bilimleri</option><option>Sosyal Bilgiler</option><option>Diğer</option>
-      </select>
-      
-      <select name="seviye" required style="width:100%;padding:10px;margin:8px 0;border:1px solid #ccc;border-radius:4px;">
-        <option value="">Seviye Seçiniz *</option>
-        <option>İlkokul</option><option>Ortaokul</option><option>Lise</option><option>Üniversite</option>
-      </select>
-      
-      <textarea name="mesaj" placeholder="Kendinizi tanıtın ve neden gönüllü öğretmen olmak istediğinizi detaylı yazınız..." required style="width:100%;padding:10px;margin:8px 0;height:130px;border:1px solid #ccc;border-radius:4px;"></textarea>
-      
-      <input type="hidden" name="form_type" value="gönüllü_öğretmen">
-      
-      <button type="submit" style="width:100%;padding:14px;background:#00b4d8;color:white;font-size:16px;font-weight:bold;border:none;border-radius:8px;margin-top:10px;">Başvuruyu Gönder</button>
-    </form>
-  </div>
-
-  <!-- ====================== ÖĞRENCİ ====================== -->
-  <div id="ogrenci" class="tab-content" style="padding:20px; background:white; border-radius:10px; box-shadow:0 0 8px rgba(0,0,0,0.05);">
-    <h2 style="color:#006d77; text-align:center; margin-bottom:20px;">Öğrenci Üye Ol</h2>
-    <form action="https://formspree.io/f/xpqowknj" method="POST" onsubmit="sendForm(event)">
-      <input type="hidden" name="form_type" value="öğrenci">
-      <input type="text" name="adsoyad" placeholder="Ad Soyad *" required style="width:100%; padding:10px; margin:8px 0; border:1px solid #ccc; border-radius:4px;">
-      <input type="tel" name="telefon" placeholder="Telefon *" required style="width:100%; padding:10px; margin:8px 0; border:1px solid #ccc; border-radius:4px;">
-      <input type="email" name="email" placeholder="E-posta *" required style="width:100%; padding:10px; margin:8px 0; border:1px solid #ccc; border-radius:4px;">
-      
-      <select name="okul_turu" required style="width:100%; padding:10px; margin:8px 0; border:1px solid #ccc; border-radius:4px;">
-        <option value="">Okul Türü *</option>
-        <option>İlkokul</option><option>Ortaokul</option><option>Lise</option><option>Meslek Lisesi</option><option>Üniversite</option>
-      </select>
-      
-      <input type="text" name="okul" placeholder="Okulunuz *" required style="width:100%; padding:10px; margin:8px 0; border:1px solid #ccc; border-radius:4px;">
-      <input type="text" name="bolum" placeholder="Bölümünüz / Sınıfınız *" required style="width:100%; padding:10px; margin:8px 0; border:1px solid #ccc; border-radius:4px;">
-
-      <div style="margin:20px 0; font-size:15px;">
-        <label><input type="checkbox" id="bursIste" style="margin-right:8px;"> <strong>Burs almayı düşünüyorum</strong></label>
-      </div>
-
-      <div id="bursForm" style="display:none; margin-top:20px; padding:15px; background:#f8f9fa; border:1px dashed #006d77; border-radius:8px;">
-        <h3 style="color:#006d77; margin-top:0;">Burs Başvuru Bilgileri</h3>
-        <!-- Burs alanları (senin orijinal kodundan aynı) -->
-        <select name="egitim_duzeyi" style="width:100%; padding:10px; margin:8px 0; border:1px solid #ccc; border-radius:4px;">
-          <option value="">Okuduğunuz Eğitim Düzeyi</option>
-          <option>İlkokul</option><option>Ortaokul</option><option>Lise</option><option>Ön Lisans</option><option>Lisans</option><option>Yüksek Lisans</option>
-        </select>
-        <!-- Diğer burs alanları aynı şekilde buraya eklenebilir -->
-        <textarea name="aciklama" placeholder="Ek açıklamalar..." style="width:100%; padding:10px; margin:8px 0; height:80px; border:1px solid #ccc; border-radius:4px;"></textarea>
-      </div>
-
-      <div style="margin:20px 0; font-size:14px;">
-        <label><input type="checkbox" name="sozlesme" required> Verdiğim bilgilerin doğru ve eksiksiz olduğunu kabul ediyorum.</label>
-      </div>
-
-      <button type="submit" style="background:#2ecc71; color:white; padding:14px; border:none; border-radius:8px; width:100%; font-size:16px; font-weight:bold;">Üye Ol ve Başvur</button>
-    </form>
-  </div>
-
-  <!-- ====================== GÖNÜLLÜ / ÜYE ====================== -->
-  <div id="gonullu" class="tab-content" style="padding:20px; background:white; border-radius:10px;">
-    <form action="https://formspree.io/f/xpqowknj" method="POST" onsubmit="sendForm(event)">
-      <h2 style="color:#006d77; text-align:center; margin-bottom:20px;">Üye / Gönüllü Başvurusu</h2>
-      <input type="text" name="adsoyad" placeholder="Ad Soyad *" required style="width:100%;padding:10px;margin:8px 0;border:1px solid #ccc;border-radius:4px;">
-      <input type="tel" name="telefon" placeholder="Telefon Numarası *" required style="width:100%;padding:10px;margin:8px 0;border:1px solid #ccc;border-radius:4px;">
-      <input type="email" name="email" placeholder="E-posta Adresi *" required style="width:100%;padding:10px;margin:8px 0;border:1px solid #ccc;border-radius:4px;">
-      <input type="text" name="meslek" placeholder="Meslek / Unvan *" required style="width:100%;padding:10px;margin:8px 0;border:1px solid #ccc;border-radius:4px;">
-      
-      <select name="ilgi" required style="width:100%;padding:10px;margin:8px 0;border:1px solid #ccc;border-radius:4px;">
-        <option value="">İlgi Alanı Seçiniz *</option>
-        <option>Eğitim</option><option>Sosyal Yardım</option><option>Çevre</option><option>Kültür ve Sanat</option><option>Diğer</option>
-      </select>
-      
-      <textarea name="mesaj" placeholder="Kendinizi tanıtın ve neden üye/gönüllü olmak istediğinizi detaylı yazınız..." style="width:100%;padding:10px;margin:8px 0;height:130px;border:1px solid #ccc;border-radius:4px;"></textarea>
-      
-      <input type="hidden" name="form_type" value="uye_gonullu">
-      
-      <button type="submit" style="width:100%;padding:14px;background:#9b59b6;color:white;font-size:16px;font-weight:bold;border:none;border-radius:8px;margin-top:10px;">Başvuruyu Gönder</button>
-    </form>
-  </div>
-
-  <!-- ====================== DESTEK OL (DÜZELTİLMİŞ) ====================== -->
-  <div id="destek" class="tab-content" style="padding:20px; background:white; border-radius:10px;">
-    <form action="https://formspree.io/f/xpqowknj" method="POST" onsubmit="sendForm(event)" enctype="multipart/form-data">
-      <h2 style="color:#006d77; text-align:center; margin-bottom:20px;">Destek Ol</h2>
-      
-      <input type="text" name="adsoyad" placeholder="Ad Soyad *" required style="width:100%;padding:10px;margin:8px 0;border:1px solid #ccc;border-radius:4px;">
-      <input type="email" name="email" placeholder="E-posta Adresi *" required style="width:100%;padding:10px;margin:8px 0;border:1px solid #ccc;border-radius:4px;">
-      <input type="tel" name="telefon" placeholder="Telefon Numarası (İsteğe bağlı)" style="width:100%;padding:10px;margin:8px 0;border:1px solid #ccc;border-radius:4px;">
-
-      <select name="destek_turu" required style="width:100%;padding:10px;margin:12px 0;border:1px solid #ccc;border-radius:4px;">
-        <option value="">Destek Türü Seçiniz *</option>
-        <option value="Burs Desteği">Burs Desteği</option>
-        <option value="Finansal Destek">Finansal Destek</option>
-        <option value="Malzeme Desteği">Malzeme / Kırtasiye Desteği</option>
-        <option value="Gönüllülük">Gönüllü Olarak Destek</option>
-        <option value="Diğer">Diğer</option>
-      </select>
-
-      <!-- DESTEK MİKTARI ALANI -->
-      <input type="number" name="destek_miktari" id="destekMiktari" placeholder="Destek Miktarı (TL)" 
-             style="width:100%;padding:12px;margin:12px 0;border:1px solid #ccc;border-radius:4px;" min="1" step="1">
-
-      <!-- ÖDEME YÖNTEMİ -->
-      <select name="odeme_yontemi" id="odemeYontemi" onchange="odemeSecildi(this.value)" required 
-              style="width:100%;padding:10px;margin:12px 0;border:1px solid #ccc;border-radius:4px;">
-        <option value="">Ödeme Yöntemi Seçiniz *</option>
-        <option value="EFT_Havale">EFT / Havale (Banka Transferi)</option>
-        <option value="Elden">Elden Nakit Ödeme</option>
-        <option value="KrediKarti">Kredi Kartı ile Ödeme</option>
-        <option value="Diger">Diğer</option>
-      </select>
-
-      <!-- EFT / HAVALE -->
-      <div id="eftAlani" class="payment-section" style="display:none;">
-        <p style="font-weight:bold; color:#006d77;">🏦 EFT / Havale Bilgileri</p>
-        <p><strong>Dernek IBAN:</strong></p>
-        <input type="text" value="TR00 0000 0000 0000 0000 0000 00" readonly style="width:100%;padding:12px;background:#e0f7fa;border:1px solid #aaa;border-radius:6px;font-family:monospace;font-size:15px;">
-        <small style="color:#d35400;">Transfer yaparken açıklama kısmına Ad Soyadınızı yazmayı unutmayınız.</small>
-      </div>
-
-      <!-- ELDEN -->
-      <div id="eldenAlani" class="payment-section" style="display:none;">
-        <p style="font-weight:bold; color:#006d77;">💵 Elden Nakit Ödeme</p>
-        <p>Dernek merkezimizde veya etkinliklerde nakit ödeme yapabilirsiniz.</p>
-        <small>Randevu için telefon ile iletişime geçiniz.</small>
-      </div>
-
-      <!-- KREDİ KARTI -->
-      <div id="krediAlani" class="payment-section" style="display:none;">
-        <p style="font-weight:bold; color:#006d77;">💳 Kredi Kartı ile Ödeme</p>
-        <div class="warning">
-          ⚠️ Bu form anında ödeme almaz. Bilgileriniz bize ulaştığında size <strong>3D Secure güvenli ödeme linki</strong> göndereceğiz.
-        </div>
-        <input type="text" name="kart_sahibi" placeholder="Kart Üzerindeki İsim Soyisim" style="width:100%;padding:10px;margin:8px 0;border:1px solid #ccc;border-radius:4px;">
-        <input type="text" name="kart_numarasi" id="kartNumarasi" maxlength="19" placeholder="Kart Numarası" style="width:100%;padding:10px;margin:8px 0;border:1px solid #ccc;border-radius:4px;">
-        <div style="display:flex; gap:10px;">
-          <input type="text" name="son_kullanma" maxlength="5" placeholder="AA/YY" style="flex:1;padding:10px;border:1px solid #ccc;border-radius:4px;">
-          <input type="text" name="cvv" maxlength="4" placeholder="CVV / CVC" style="width:130px;padding:10px;border:1px solid #ccc;border-radius:4px;">
-        </div>
-      </div>
-
-      <!-- DİĞER -->
-      <div id="digerAlani" class="payment-section" style="display:none;">
-        <textarea name="diger_odeme_aciklama" placeholder="Hangi yöntemle destek olmak istediğinizi detaylı yazınız..." style="width:100%;padding:12px;height:80px;border:1px solid #ccc;border-radius:4px;"></textarea>
-      </div>
-
-      <textarea name="mesaj" placeholder="Destek olmak istediğiniz konuda eklemek istedikleriniz, notlarınız veya sorularınız..." style="width:100%; padding:12px; margin:12px 0; height:110px; border:1px solid #ccc; border-radius:4px;"></textarea>
-      
-      <input type="hidden" name="form_type" value="destek">
-      
-      <button type="submit" style="width:100%; padding:14px; background:#e67e22; color:white; font-size:16px; font-weight:bold; border:none; border-radius:8px; margin-top:10px;">
-        Destek Talebimi Gönder
-      </button>
-    </form>
-  </div>
-
-<script>
-function openTab(tabName) {
-    document.querySelectorAll('.tab-content').forEach(tab => tab.style.display = "none");
-    document.getElementById(tabName).style.display = "block";
-}
-
-function sendForm(e) {
-    e.preventDefault();
-    const form = e.target;
-    fetch(form.action, {
-        method: "POST",
-        body: new FormData(form),
-        headers: { 'Accept': 'application/json' }
-    })
-    .then(response => {
-        if (response.ok) {
-            document.getElementById("successMessage").style.display = "block";
-            form.reset();
-            // Alanları sıfırla
-            document.getElementById("bursForm").style.display = "none";
-            document.getElementById("eftAlani").style.display = "none";
-            document.getElementById("eldenAlani").style.display = "none";
-            document.getElementById("krediAlani").style.display = "none";
-            document.getElementById("digerAlani").style.display = "none";
-            setTimeout(() => document.getElementById("successMessage").style.display = "none", 5000);
-        }
-    })
-    .catch(err => console.error(err));
-}
-
-function odemeSecildi(val) {
-    document.getElementById("eftAlani").style.display = "none";
-    document.getElementById("eldenAlani").style.display = "none";
-    document.getElementById("krediAlani").style.display = "none";
-    document.getElementById("digerAlani").style.display = "none";
-
-    if (val === "EFT_Havale") document.getElementById("eftAlani").style.display = "block";
-    else if (val === "Elden") document.getElementById("eldenAlani").style.display = "block";
-    else if (val === "KrediKarti") document.getElementById("krediAlani").style.display = "block";
-    else if (val === "Diger") document.getElementById("digerAlani").style.display = "block";
-}
-
-// Burs checkbox
-document.getElementById("bursIste")?.addEventListener("change", function() {
-    document.getElementById("bursForm").style.display = this.checked ? "block" : "none";
-});
-
-// Kart numarası formatlama
-document.addEventListener("input", function(e) {
-    if (e.target.id === "kartNumarasi") {
-        let val = e.target.value.replace(/\s+/g, '').replace(/[^0-9]/gi, '');
-        if (val.length > 0) val = val.match(/.{1,4}/g).join(' ');
-        e.target.value = val;
-    }
-});
-</script>
+<!-- BUTON -->
+<div style="display:flex;gap:10px;flex-wrap:wrap;justify-content:center;">
+<button class="tab-btn" style="background:#00b4d8" onclick="openTab('ogretmen')">Öğretmen</button>
+<button class="tab-btn" style="background:#2ecc71" onclick="openTab('ogrenci')">Öğrenci</button>
+<button class="tab-btn" style="background:#9b59b6" onclick="openTab('gonullu')">Üye</button>
+<button class="tab-btn" style="background:#e67e22" onclick="openTab('destek')">Destek</button>
 </div>
 
-<a href="./index.html" style="position:fixed;bottom:20px;right:20px;background:#006d77;color:white;padding:12px 18px;border-radius:30px;text-decoration:none;box-shadow:0 4px 12px rgba(0,0,0,0.2);">
-  🏠 Ana Sayfaya Dön
-</a>
+<!-- ================= ÖĞRETMEN ================= -->
+<div id="ogretmen" class="tab-content" style="display:block;">
+<form action="https://formspree.io/f/xpqowknj" method="POST" onsubmit="sendForm(event)">
+<h2>Gönüllü Öğretmen</h2>
+
+<input type="text" name="adsoyad" placeholder="Ad Soyad" required>
+<input type="tel" name="telefon" placeholder="Telefon" required>
+<input type="email" name="email" placeholder="E-posta" required>
+
+<select name="brans" required>
+<option value="">Branş</option>
+<option>Matematik</option>
+<option>Türkçe</option>
+<option>İngilizce</option>
+</select>
+
+<textarea name="mesaj" placeholder="Kendinizi tanıtın"></textarea>
+
+<button style="background:#00b4d8">Gönder</button>
+</form>
+</div>
+
+<!-- ================= ÖĞRENCİ ================= -->
+<div id="ogrenci" class="tab-content">
+<form action="https://formspree.io/f/xpqowknj" method="POST" id="ogrenciForm" onsubmit="sendForm(event)">
+<h2>Öğrenci Üye Ol</h2>
+
+<input type="text" name="adsoyad" placeholder="Ad Soyad" required>
+<input type="text" name="tc" placeholder="TC Kimlik" required maxlength="11">
+<input type="date" name="dogum">
+
+<select name="cinsiyet">
+<option value="">Cinsiyet</option>
+<option>Erkek</option>
+<option>Kadın</option>
+</select>
+
+<input type="tel" name="telefon" placeholder="Telefon" required>
+<input type="email" name="email" placeholder="E-posta" required>
+
+<select name="okul_turu" required>
+<option value="">Okul Türü</option>
+<option>Lise</option>
+<option>Üniversite</option>
+</select>
+
+<input type="text" name="okul" placeholder="Okul">
+<input type="text" name="sinif" placeholder="Sınıf">
+
+<label><input type="checkbox" id="bursCheck"> Burs almak istiyorum</label>
+
+<div id="bursForm" style="display:none;">
+<h3>Burs Bilgileri</h3>
+
+<select name="gelir">
+<option value="">Gelir</option>
+<option>0-5000</option>
+<option>5000-10000</option>
+<option>10000+</option>
+</select>
+
+<select name="anne">
+<option value="">Anne</option>
+<option>Sağ</option>
+<option>Vefat</option>
+</select>
+
+<select name="baba">
+<option value="">Baba</option>
+<option>Sağ</option>
+<option>Vefat</option>
+</select>
+
+<textarea name="aciklama"></textarea>
+</div>
+
+<button style="background:#2ecc71">Gönder</button>
+</form>
+</div>
+
+<!-- ================= GÖNÜLLÜ ================= -->
+<div id="gonullu" class="tab-content">
+<form action="https://formspree.io/f/xpqowknj" method="POST" onsubmit="sendForm(event)">
+<h2>Üye Ol</h2>
+
+<input type="text" name="adsoyad" placeholder="Ad Soyad">
+<input type="tel" name="telefon" placeholder="Telefon">
+<input type="email" name="email" placeholder="E-posta">
+
+<textarea name="mesaj"></textarea>
+
+<button style="background:#9b59b6">Gönder</button>
+</form>
+</div>
+
+<!-- ================= DESTEK ================= -->
+<div id="destek" class="tab-content">
+<form action="https://formspree.io/f/xpqowknj" method="POST" onsubmit="sendForm(event)">
+
+<h2>Destek Ol</h2>
+
+<input type="text" name="adsoyad" placeholder="Ad Soyad" required>
+<input type="email" name="email" placeholder="E-posta" required>
+
+<select id="destekTuru" onchange="destekSecildi(this.value)">
+<option value="">Destek Türü</option>
+<option value="burs">Burs Vermek</option>
+<option value="diger">Diğer</option>
+</select>
+
+<div id="odemeAlani" style="display:none;">
+
+<input type="number" name="miktar" placeholder="Miktar">
+
+<select onchange="odemeSec(this.value)">
+<option value="">Ödeme</option>
+<option value="iban">IBAN</option>
+<option value="eft">EFT</option>
+<option value="kart">Kredi Kartı</option>
+<option value="nakit">Nakit</option>
+</select>
+
+<div id="iban" class="payment-section" style="display:none;">
+IBAN: BURAYA EKLE
+</div>
+
+<div id="eft" class="payment-section" style="display:none;">
+Banka Havale
+</div>
+
+<div id="nakit" class="payment-section" style="display:none;">
+Elden ödeme
+</div>
+
+<div id="kart" class="payment-section" style="display:none;">
+<input type="text" placeholder="Kart Adı">
+<input type="text" id="kartNo" placeholder="Kart No">
+<input type="text" placeholder="AA/YY">
+<input type="text" placeholder="CVV">
+</div>
+
+</div>
+
+<button style="background:#e67e22">Gönder</button>
+</form>
+</div>
+
+</div>
+
+<script>
+
+// TAB
+function openTab(tab){
+document.querySelectorAll(".tab-content").forEach(t=>t.style.display="none");
+document.getElementById(tab).style.display="block";
+}
+
+// FORM GÖNDER
+function sendForm(e){
+e.preventDefault();
+fetch(e.target.action,{
+method:"POST",
+body:new FormData(e.target),
+headers:{'Accept':'application/json'}
+}).then(()=>{
+alert("Gönderildi");
+e.target.reset();
+resetAll();
+});
+}
+
+// RESET
+function resetAll(){
+document.getElementById("bursForm").style.display="none";
+document.getElementById("odemeAlani").style.display="none";
+["iban","eft","nakit","kart"].forEach(id=>{
+let el=document.getElementById(id);
+if(el) el.style.display="none";
+});
+}
+
+// BURS
+document.getElementById("bursCheck").addEventListener("change",function(){
+document.getElementById("bursForm").style.display=this.checked?"block":"none";
+});
+
+// DESTEK
+function destekSecildi(val){
+document.getElementById("odemeAlani").style.display = val==="burs"?"block":"none";
+}
+
+// ÖDEME
+function odemeSec(val){
+["iban","eft","nakit","kart"].forEach(id=>{
+document.getElementById(id).style.display="none";
+});
+if(val) document.getElementById(val).style.display="block";
+}
+
+// KART FORMAT
+document.addEventListener("input",function(e){
+if(e.target.id==="kartNo"){
+let v=e.target.value.replace(/\D/g,'').match(/.{1,4}/g);
+e.target.value=v?v.join(" "):"";
+}
+});
+
+</script>
+
 </body>
 </html>
