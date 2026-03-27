@@ -1,255 +1,110 @@
-<!DOCTYPE html>
-<html lang="tr">
-<head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Bize Katıl - ESERKON</title>
+<div id="ogrenci" class="tab-content" style="display:none; padding:20px; background:white; border-radius:10px; box-shadow:0 0 8px rgba(0,0,0,0.05);">
+  <h2 style="color:#006d77; text-align:center;">Öğrenci Üye Ol</h2>
+  <form action="https://formspree.io/f/mgvglwbz" method="POST">
+    <input type="hidden" name="form_type" value="öğrenci">
 
-<style>
-body {font-family:Arial; background:#f0f8ff;}
-.container {max-width:850px;margin:auto;padding:20px;background:white;border-radius:12px;}
+    <!-- Temel Bilgiler -->
+    <input type="text" name="adsoyad" placeholder="Ad Soyad" required style="width:100%; padding:10px; margin:8px 0; border:1px solid #ccc; border-radius:4px;">
+    <input type="tel" name="telefon" placeholder="Telefon" required style="width:100%; padding:10px; margin:8px 0; border:1px solid #ccc; border-radius:4px;">
+    <input type="email" name="email" placeholder="E-posta" required style="width:100%; padding:10px; margin:8px 0; border:1px solid #ccc; border-radius:4px;">
 
-.tab-content{display:none;}
-.tab-btn{
-padding:10px 15px;border:none;border-radius:8px;color:white;cursor:pointer;
-}
+    <select name="okul_turu" required style="width:100%; padding:10px; margin:8px 0; border:1px solid #ccc; border-radius:4px;">
+      <option value="">Okul Türü</option>
+      <option>İlkokul</option>
+      <option>Ortaokul</option>
+      <option>Lise</option>
+      <option>Meslek Lisesi</option>
+      <option>Üniversite</option>
+    </select>
 
-input,select,textarea{
-width:100%;padding:10px;margin:8px 0;border:1px solid #ccc;border-radius:4px;
-}
+    <input type="text" name="okul" placeholder="Okulunuz" required style="width:100%; padding:10px; margin:8px 0; border:1px solid #ccc; border-radius:4px;">
+    <input type="text" name="bolum" placeholder="Bölümünüz" required style="width:100%; padding:10px; margin:8px 0; border:1px solid #ccc; border-radius:4px;">
 
-button{
-padding:12px;border:none;border-radius:8px;color:white;font-weight:bold;
-}
+    <!-- Burs İsteği -->
+    <div style="margin:17px 0; font-size:17px;">
+      <label>
+        <input type="checkbox" id="bursIste" style="margin-right:8px;"> 
+        <strong>Burs almayı düşünüyor musunuz?</strong>
+      </label>
+    </div>
 
-.payment-section{
-background:#f8f9fa;padding:15px;border-radius:8px;margin-top:10px;
-}
-</style>
-</head>
+    <!-- Burs Formu (Gizli başlar) -->
+    <div id="bursForm" style="display:none; margin-top:20px; padding:15px; background:#f8f9fa; border:1px dashed #006d77; border-radius:8px;">
+      <h3 style="color:#006d77; margin-top:0;">Burs Başvuru Bilgileri</h3>
 
-<body>
+      <select name="okul_turu" style="width:100%; padding:10px; margin:8px 0; border:1px solid #ccc; border-radius:4px;">
+        <option value="">Okuduğunuz Eğitim Düzeyi</option>
+        <option>İlkokul</option>
+        <option>Ortaokul</option>
+        <option>Lise</option>
+        <option>Ön Lisans</option>
+        <option>Lisans</option>
+        <option>Yüksek Lisans</option>
+      </select>
 
-<div class="container">
+      <select name="engel_durum" style="width:100%; padding:10px; margin:8px 0; border:1px solid #ccc; border-radius:4px;">
+        <option value="">Engelli bir durumunuz var mı?</option>
+        <option>Yok</option>
+        <option>Var (Lütfen açıklama kısmına yazınız)</option>
+      </select>
 
-<h1 style="text-align:center;color:#006d77;">Bize Katıl</h1>
+      <select name="aylik_gelir" style="width:100%; padding:10px; margin:8px 0; border:1px solid #ccc; border-radius:4px;">
+        <option value="">Aylık Hane Geliri</option>
+        <option>0 - 10.000 TL</option>
+        <option>10.001 - 20.000 TL</option>
+        <option>20.001 - 35.000 TL</option>
+        <option>35.001 TL ve üzeri</option>
+        <option>Bilinmiyor</option>
+      </select>
 
-<!-- BUTON -->
-<div style="display:flex;gap:10px;flex-wrap:wrap;justify-content:center;">
-<button class="tab-btn" style="background:#00b4d8" onclick="openTab('ogretmen')">Öğretmen</button>
-<button class="tab-btn" style="background:#2ecc71" onclick="openTab('ogrenci')">Öğrenci</button>
-<button class="tab-btn" style="background:#9b59b6" onclick="openTab('gonullu')">Üye</button>
-<button class="tab-btn" style="background:#e67e22" onclick="openTab('destek')">Destek</button>
-</div>
+      <select name="calisiyor_mu" style="width:100%; padding:10px; margin:8px 0; border:1px solid #ccc; border-radius:4px;">
+        <option value="">Şu anda ek bir iş yapıyor musunuz?</option>
+        <option>Evet</option>
+        <option>Hayır</option>
+      </select>
 
-<!-- ================= ÖĞRETMEN ================= -->
-<div id="ogretmen" class="tab-content" style="display:block;">
-<form action="https://formspree.io/f/xpqowknj" method="POST" onsubmit="sendForm(event)">
-<h2>Gönüllü Öğretmen</h2>
+      <select name="diger_burs" style="width:100%; padding:10px; margin:8px 0; border:1px solid #ccc; border-radius:4px;">
+        <option value="">Başka kurumdan burs alıyor musunuz?</option>
+        <option>Yok</option>
+        <option>Devlet (KYK vb.)</option>
+        <option>Vakıf/STK</option>
+        <option>Özel Kurum</option>
+      </select>
 
-<input type="text" name="adsoyad" placeholder="Ad Soyad" required>
-<input type="tel" name="telefon" placeholder="Telefon" required>
-<input type="email" name="email" placeholder="E-posta" required>
+      <select name="anne_durum" style="width:100%; padding:10px; margin:8px 0; border:1px solid #ccc; border-radius:4px;">
+        <option value="">Anne Hayatta mı?</option>
+        <option>Evet</option>
+        <option>Hayır</option>
+        <option>Bilinmiyor</option>
+      </select>
 
-<select name="brans" required>
-<option value="">Branş</option>
-<option>Matematik</option>
-<option>Türkçe</option>
-<option>İngilizce</option>
-</select>
+      <select name="baba_durum" style="width:100%; padding:10px; margin:8px 0; border:1px solid #ccc; border-radius:4px;">
+        <option value="">Baba Hayatta mı?</option>
+        <option>Evet</option>
+        <option>Hayır</option>
+        <option>Bilinmiyor</option>
+      </select>
 
-<textarea name="mesaj" placeholder="Kendinizi tanıtın"></textarea>
+      <input type="text" name="acil_kisi" placeholder="Acil Durumda Ulaşılacak Kişi" style="width:100%; padding:10px; margin:8px 0; border:1px solid #ccc; border-radius:4px;">
+      <input type="tel" name="acil_telefon" placeholder="Acil Kişi Telefonu" style="width:100%; padding:10px; margin:8px 0; border:1px solid #ccc; border-radius:4px;">
 
-<button style="background:#00b4d8">Gönder</button>
-</form>
-</div>
+      <textarea name="aciklama" placeholder="Eklemek istediğiniz bir durum varsa (rapor, belge, açıklama)" style="width:100%; padding:10px; margin:8px 0; border:1px solid #ccc; border-radius:4px; height:60px;"></textarea>
 
-<!-- ================= ÖĞRENCİ ================= -->
-<div id="ogrenci" class="tab-content">
-<form action="https://formspree.io/f/xpqowknj" method="POST" id="ogrenciForm" onsubmit="sendForm(event)">
-<h2>Öğrenci Üye Ol</h2>
+      <div style="margin:10px 0; font-size:14px; color:#555;">
+        <label>
+          <input type="checkbox" name="belge_gonder" value="1"> 
+          ön başvurum olumlu sonuçlanırsa Gerekli belgeleri (e-devlet gelir belgesi, rapor, kimlik) e-posta ile göndermek istiyorum.
+        </label>
+      </div>
+    </div>
 
-<input type="text" name="adsoyad" placeholder="Ad Soyad" required>
-<input type="text" name="tc" placeholder="TC Kimlik" required maxlength="11">
-<input type="date" name="dogum">
-
-<select name="cinsiyet">
-<option value="">Cinsiyet</option>
-<option>Erkek</option>
-<option>Kadın</option>
-</select>
-
-<input type="tel" name="telefon" placeholder="Telefon" required>
-<input type="email" name="email" placeholder="E-posta" required>
-
-<select name="okul_turu" required>
-<option value="">Okul Türü</option>
-<option>Lise</option>
-<option>Üniversite</option>
-</select>
-
-<input type="text" name="okul" placeholder="Okul">
-<input type="text" name="sinif" placeholder="Sınıf">
-
-<label><input type="checkbox" id="bursCheck"> Burs almak istiyorum</label>
-
-<div id="bursForm" style="display:none;">
-<h3>Burs Bilgileri</h3>
-
-<select name="gelir">
-<option value="">Gelir</option>
-<option>0-5000</option>
-<option>5000-10000</option>
-<option>10000+</option>
-</select>
-
-<select name="anne">
-<option value="">Anne</option>
-<option>Sağ</option>
-<option>Vefat</option>
-</select>
-
-<select name="baba">
-<option value="">Baba</option>
-<option>Sağ</option>
-<option>Vefat</option>
-</select>
-
-<textarea name="aciklama"></textarea>
-</div>
-
-<button style="background:#2ecc71">Gönder</button>
-</form>
-</div>
-
-<!-- ================= GÖNÜLLÜ ================= -->
-<div id="gonullu" class="tab-content">
-<form action="https://formspree.io/f/xpqowknj" method="POST" onsubmit="sendForm(event)">
-<h2>Üye Ol</h2>
-
-<input type="text" name="adsoyad" placeholder="Ad Soyad">
-<input type="tel" name="telefon" placeholder="Telefon">
-<input type="email" name="email" placeholder="E-posta">
-
-<textarea name="mesaj"></textarea>
-
-<button style="background:#9b59b6">Gönder</button>
-</form>
-</div>
-
-<!-- ================= DESTEK ================= -->
-<div id="destek" class="tab-content">
-<form action="https://formspree.io/f/xpqowknj" method="POST" onsubmit="sendForm(event)">
-
-<h2>Destek Ol</h2>
-
-<input type="text" name="adsoyad" placeholder="Ad Soyad" required>
-<input type="email" name="email" placeholder="E-posta" required>
-
-<select id="destekTuru" onchange="destekSecildi(this.value)">
-<option value="">Destek Türü</option>
-<option value="burs">Burs Vermek</option>
-<option value="diger">Diğer</option>
-</select>
-
-<div id="odemeAlani" style="display:none;">
-
-<input type="number" name="miktar" placeholder="Miktar">
-
-<select onchange="odemeSec(this.value)">
-<option value="">Ödeme</option>
-<option value="iban">IBAN</option>
-<option value="eft">EFT</option>
-<option value="kart">Kredi Kartı</option>
-<option value="nakit">Nakit</option>
-</select>
-
-<div id="iban" class="payment-section" style="display:none;">
-IBAN: BURAYA EKLE
-</div>
-
-<div id="eft" class="payment-section" style="display:none;">
-Banka Havale
-</div>
-
-<div id="nakit" class="payment-section" style="display:none;">
-Elden ödeme
-</div>
-
-<div id="kart" class="payment-section" style="display:none;">
-<input type="text" placeholder="Kart Adı">
-<input type="text" id="kartNo" placeholder="Kart No">
-<input type="text" placeholder="AA/YY">
-<input type="text" placeholder="CVV">
-</div>
-
-</div>
-
-<button style="background:#e67e22">Gönder</button>
-</form>
-</div>
-
+    <!-- Gönder Butonu -->
+    <button type="submit" style="background:#006d77; color:white; padding:12px 20px; border:none; border-radius:4px; cursor:pointer; width:100%; font-size:16px;">Üye Ol ve Başvur</button>
+  </form>
 </div>
 
 <script>
-
-// TAB
-function openTab(tab){
-document.querySelectorAll(".tab-content").forEach(t=>t.style.display="none");
-document.getElementById(tab).style.display="block";
-}
-
-// FORM GÖNDER
-function sendForm(e){
-e.preventDefault();
-fetch(e.target.action,{
-method:"POST",
-body:new FormData(e.target),
-headers:{'Accept':'application/json'}
-}).then(()=>{
-alert("Gönderildi");
-e.target.reset();
-resetAll();
-});
-}
-
-// RESET
-function resetAll(){
-document.getElementById("bursForm").style.display="none";
-document.getElementById("odemeAlani").style.display="none";
-["iban","eft","nakit","kart"].forEach(id=>{
-let el=document.getElementById(id);
-if(el) el.style.display="none";
-});
-}
-
-// BURS
-document.getElementById("bursCheck").addEventListener("change",function(){
-document.getElementById("bursForm").style.display=this.checked?"block":"none";
-});
-
-// DESTEK
-function destekSecildi(val){
-document.getElementById("odemeAlani").style.display = val==="burs"?"block":"none";
-}
-
-// ÖDEME
-function odemeSec(val){
-["iban","eft","nakit","kart"].forEach(id=>{
-document.getElementById(id).style.display="none";
-});
-if(val) document.getElementById(val).style.display="block";
-}
-
-// KART FORMAT
-document.addEventListener("input",function(e){
-if(e.target.id==="kartNo"){
-let v=e.target.value.replace(/\D/g,'').match(/.{1,4}/g);
-e.target.value=v?v.join(" "):"";
-}
-});
-
+  document.getElementById("bursIste")?.addEventListener("change", function() {
+    document.getElementById("bursForm").style.display = this.checked ? "block" : "none";
+  });
 </script>
-
-</body>
-</html>
